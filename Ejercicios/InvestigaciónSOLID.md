@@ -197,7 +197,7 @@ Este principio nos dice que no debemos de obligar a una clase a usar cosas que n
 ---
 
 ### Ejemplo en Python que viola el principio (Antes)
-
+```python
 class Impresora:
     def imprimir(self, documento):
         print(f"Imprimiendo: {documento}")
@@ -227,3 +227,4 @@ class ImpresoraBasica(Impresora):
 # Un equipo multifuncional hereda de ambas (herencia múltiple) 
 class ImpresoraMultifuncional(Impresora, Escaner): 
     pass
+```
