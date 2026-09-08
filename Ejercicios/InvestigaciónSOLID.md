@@ -137,7 +137,7 @@ class Perro(Animal):
 class ReproductorSonido:
     def reproducir(self, animal: Animal):
         animal.hacer_sonido()
- 
+```
 ### Fuentes: García F. (28 de octubre de 2024), "Principios SOLID en programación orientada a objetos", Consultado el día 4 de septiembre de 2026 de https://www.arsys.es/blog/principios-solid-en-la-programacion-orientada-a-objetos#tree-2
 
 ## 3. L — Liskov Substitution Principle / Principio de Sustitución de Liskov
