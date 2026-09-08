@@ -130,7 +130,7 @@ __all__ = ['CONEXION_PUBLICA']  # Solo exporta lo necesario
 
 CONEXION_PUBLICA = "[https://api.com](https://api.com)"
 _config_interna = "Dato sensible"  # Protegido con '_'
----
+```
 ## 9.- Importaciones
 Las importaciones en PEP 8 deben ir siempre al inicio del archivo (justo debajo del docstring del módulo y antes de variables globales), escribiendo una por línea y divididas en tres bloques de prioridad separados por una línea en blanco (librería estándar, librerías de terceros y módulos locales), priorizando importaciones absolutas y evitando el uso de asteriscos.
 ## Antes (Incorrecto / No recomendado)
