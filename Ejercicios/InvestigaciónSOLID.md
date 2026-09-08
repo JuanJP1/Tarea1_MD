@@ -184,6 +184,7 @@ class ArchivoAudio(ArchivoMultimedia):
 	# CUMPLE LISKOV: Solo hereda reproducir_sonido, no engaña al programa 
 	pass
 ```
+### Fuente consultada: hdeleon.net. (2021, 15 diciembre). Principios SOLID: Principio de sustitución de Liskov LSP [Vídeo]. YouTube. https://www.youtube.com/watch?v=JwtpU_rH1LE
 
 ## 4. Interface Segregation Principle / Principio de segregación de interfaces
 
@@ -212,7 +213,7 @@ class ImpresoraBasica(Impresora):
 ```
 ### Ejemplo aplicando el principio (Despues)
 
-# Clases pequeñas y específicas 
+### Clases pequeñas y específicas 
 ```python
 class Impresora: 
     def imprimir(self, documento): 
@@ -230,3 +231,4 @@ class ImpresoraBasica(Impresora):
 class ImpresoraMultifuncional(Impresora, Escaner): 
     pass
 ```
+### Fuente consultada: Ferrer, B. (2024, 7 marzo). Principios SOLID: (4) Interface Segregation Principle - secture. Secture. https://secture.com/principios-solid-interface-segregation-principle/
