@@ -149,6 +149,7 @@ class ReproductorSonido:
 
 ### Explicacion Conceptual
 Este principio busca que las clases del programa funcionen de manera correcta indicando que cualquier clase o clases que se creen posterior (hija) a la clase original (padre) puedan llegar a sustituir a la misma clase original sin alterar el funcionamiento y manteniendo el comportamiento esperado
+
 ---
 
 ### Ejemplo en Python que viola el principio (Antes)
@@ -181,7 +182,7 @@ class ArchivoVideo(ArchivoMultimedia):
 class ArchivoAudio(ArchivoMultimedia): 
 	# CUMPLE LISKOV: Solo hereda reproducir_sonido, no engaña al programa 
 	pass
-
+```
 
 ## 4. Interface Segregation Principle / Principio de segregación de interfaces
 
@@ -192,6 +193,7 @@ class ArchivoAudio(ArchivoMultimedia):
 
 ### Explicacion Conceptual
 Este principio nos dice que no debemos de obligar a una clase a usar cosas que no necesita, si tenemos una clase gigante con diferentes funciones se llega a ver mucho mejor si se separa esa clase en estructuras mas pequeñas, con el objetivo de que solo se lleguen a usar usar las funciones que se necesitan
+
 ---
 
 ### Ejemplo en Python que viola el principio (Antes)
