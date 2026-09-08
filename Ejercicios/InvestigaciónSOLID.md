@@ -139,3 +139,89 @@ class ReproductorSonido:
         animal.hacer_sonido()
  
 ### Fuentes: García F. (28 de octubre de 2024), "Principios SOLID en programación orientada a objetos", Consultado el día 4 de septiembre de 2026 de https://www.arsys.es/blog/principios-solid-en-la-programacion-orientada-a-objetos#tree-2
+
+## 3. L — Liskov Substitution Principle / Principio de Sustitución de Liskov
+
+### Nombre completo del principio y qué problema de diseño busca resolver.
+
+* **Nombre completo:** Liskov Substitution Principle (LSP).
+* **Problema de diseño que resuelve:** Este principio busca resolver el problema de las herencias mal diseñadas dentro de la programación, donde una clase hija "rompe" el comportamiento esperado de la clase padre, provocando errores en tiempo de ejecución al ser sustituida.
+
+### Explicacion Conceptual
+Este principio busca que las clases del programa funcionen de manera correcta indicando que cualquier clase o clases que se creen posterior (hija) a la clase original (padre) puedan llegar a sustituir a la misma clase original sin alterar el funcionamiento y manteniendo el comportamiento esperado
+---
+
+### Ejemplo en Python que viola el principio (Antes)
+
+Supongamos que tenemos una estructura para manejar archivos multimedia. La siguiente clase padre asume que todos los archivos reproducen sonido y muestran video.
+
+```python
+class ArchivoVideo: 
+	def reproducir_sonido(self): 
+		return "Reproduciendo audio..." 
+	def mostrar_video(self): 
+		return "Mostrando imagen en pantalla..." 
+
+class ArchivoAudio(ArchivoVideo): 
+	def mostrar_video(self): 
+		# VIOLA LISKOV: No tiene video, así que rompe el programa con un error 
+		raise Exception("Error: Un archivo de audio MP3 no tiene imagen de video")
+
+### Ejemplo aplicando el principio (Despues)
+
+class ArchivoMultimedia: 
+	def reproducir_sonido(self): 
+		return "Reproduciendo audio..." 
+
+# Solo los archivos con imagen heredan o agregan el método de video 
+class ArchivoVideo(ArchivoMultimedia): 
+	def mostrar_video(self): 
+		return "Mostrando imagen en pantalla..." 
+
+class ArchivoAudio(ArchivoMultimedia): 
+	# CUMPLE LISKOV: Solo hereda reproducir_sonido, no engaña al programa 
+	pass
+
+
+## 4. Interface Segregation Principle / Principio de segregación de interfaces
+
+### Nombre completo del principio y qué problema de diseño busca resolver.
+
+* **Nombre completo:** Interface Segregation Principle (ISP)
+* **Problema de diseño que resuelve:** Este principio busca resolver el problema de la creación de clases bases gigantescas, proponiendo dividirlas en interfaces más pequeñas y específicas, y estableciendo que ninguna clase debe ser forzada a depender de métodos que no utiliza.
+
+### Explicacion Conceptual
+Este principio nos dice que no debemos de obligar a una clase a usar cosas que no necesita, si tenemos una clase gigante con diferentes funciones se llega a ver mucho mejor si se separa esa clase en estructuras mas pequeñas, con el objetivo de que solo se lleguen a usar usar las funciones que se necesitan
+---
+
+### Ejemplo en Python que viola el principio (Antes)
+
+class Impresora:
+    def imprimir(self, documento):
+        print(f"Imprimiendo: {documento}")
+
+    def escanear(self):
+        # Obliga a las subclases a lidiar con este método
+        raise NotImplementedError("Este dispositivo no escanea")
+
+class ImpresoraBasica(Impresora):
+    pass  # Hereda escanear() que no le sirve y da error si alguien lo llama
+
+### Ejemplo aplicando el principio (Despues)
+
+# Clases pequeñas y específicas 
+class Impresora: 
+    def imprimir(self, documento): 
+        print(f"Imprimiendo: {documento}") 
+
+class Escaner: 
+    def escanear(self): 
+        print("Escaneando documento...") 
+
+# La impresora básica solo hereda lo que usa 
+class ImpresoraBasica(Impresora):
+    pass 
+
+# Un equipo multifuncional hereda de ambas (herencia múltiple) 
+class ImpresoraMultifuncional(Impresora, Escaner): 
+    pass
