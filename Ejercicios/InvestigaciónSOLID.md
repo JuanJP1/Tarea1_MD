@@ -22,6 +22,7 @@ Así, el código queda más ordenado y es más fácil hacer cambios sin afectar 
 
 Supongamos que tenemos una tienda en línea. La siguiente clase se encarga de diferentes cosas: calcular el total de una compra, enviar un mensaje al cliente y guardar la compra.
 
+```python
 class Compra:
     def __init__(self, productos):
         self.productos = productos
@@ -78,9 +79,10 @@ class GuardarCompra:
 Le esta manera, cada clase puede modificarse de forma independiente sin afectar las demás. Esto permite que el código sea más organizado, fácil de mantener y de modificar.
 
 
-### FUENTE: 
-DigitalOcean. SOLID: Los primeros 5 principios del diseño orientado a objetos.
-https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design-es
+### FUENTE: DigitalOcean. SOLID: Los primeros 5  principios de diseño orientado a objetos.https://www.digitalocean.com/community/conceptual-articles/s-o-l-i-d-the-first-five-principles-of-object-oriented-design-es
+
+
+
 
 
 
