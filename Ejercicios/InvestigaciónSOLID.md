@@ -167,9 +167,10 @@ class ArchivoAudio(ArchivoVideo):
 	def mostrar_video(self): 
 		# VIOLA LISKOV: No tiene video, así que rompe el programa con un error 
 		raise Exception("Error: Un archivo de audio MP3 no tiene imagen de video")
-
+```
 ### Ejemplo aplicando el principio (Despues)
 
+```python
 class ArchivoMultimedia: 
 	def reproducir_sonido(self): 
 		return "Reproduciendo audio..." 
@@ -208,10 +209,11 @@ class Impresora:
 
 class ImpresoraBasica(Impresora):
     pass  # Hereda escanear() que no le sirve y da error si alguien lo llama
-
+```
 ### Ejemplo aplicando el principio (Despues)
 
 # Clases pequeñas y específicas 
+```python
 class Impresora: 
     def imprimir(self, documento): 
         print(f"Imprimiendo: {documento}") 
