@@ -124,8 +124,9 @@ Las variables globales de un módulo usan `snake_case`. Para evitar que variable
 Sin protección; exporta variables internas al exterior por accidente.
 ```python
 CONFIG_INTERNA = "Dato sensible"  # Se exporta con import *
-
+```
 ### Despues (Correcto)
+```python
 __all__ = ['CONEXION_PUBLICA']  # Solo exporta lo necesario
 
 CONEXION_PUBLICA = "[https://api.com](https://api.com)"
