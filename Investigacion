@@ -71,3 +71,38 @@ if archivo.endswith('.pdf'):
 if url.startswith('https'):
     validar(url)
 ```
+
+## 4.Nombres de funciones y variables
+Las funciones y variables deben tener nombres en minúsculas y, si el nombre tiene varias palabras, se deben separar utilizando _. A esta forma de escribir nombres se le conoce como snake_case.
+
+Ejemplos:
+
+nombreUsuario= "Hannia"
+calcularPromedio = 9.5
+
+
+nombre_usuario = "Hannia"
+calcular_promedio = 9.5
+
+
+##  5.Constantes
+Cuando un valor se considera una constante, su nombre debe escribirse completamente en mayúsculas y se deben utilizar _ para separar las palabras.
+
+Ejemplo:
+
+maxAlumnos = 50
+
+MAX_ALUMNOS = 50
+
+## 6. Indentación
+La indentación es el espacio que se coloca al inicio de una línea para indicar que pertenece a un bloque de código. En Python se deben utilizar cuatro espacios por nivel.
+
+Ejemplos:
+
+if edad >= 18:
+  print("Es mayor de edad")
+
+if edad >= 18:
+        print("Es mayor de edad")
+
+        
