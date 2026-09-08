@@ -1,3 +1,4 @@
+"# Ejercicio 1.1
 # 10 Reglas Útiles de Estilo de Python (PEP 8)
 
 Revisando la guía oficial de estilo de Python (**PEP 8**), existen directrices muy prácticas que van más allá de las reglas convencionales y ayudan a escribir un código más limpio y legible.
@@ -71,69 +72,21 @@ if archivo.endswith('.pdf'):
 if url.startswith('https'):
     validar(url)
 ```
-
-## 4.Nombres de funciones y variables
-Las funciones y variables deben tener nombres en minúsculas y, si el nombre tiene varias palabras, se deben separar utilizando _. A esta forma de escribir nombres se le conoce como snake_case.
-
-Ejemplos:
-
-nombreUsuario= "Hannia"
-calcularPromedio = 9.5
-
-
-nombre_usuario = "Hannia"
-calcular_promedio = 9.5
-
-
-##  5.Constantes
-Cuando un valor se considera una constante, su nombre debe escribirse completamente en mayúsculas y se deben utilizar _ para separar las palabras.
-
-Ejemplo:
-
-maxAlumnos = 50
-
-MAX_ALUMNOS = 50
-
-## 6. Indentación
-La indentación es el espacio que se coloca al inicio de una línea para indicar que pertenece a un bloque de código. En Python se deben utilizar cuatro espacios por nivel.
-
-Ejemplos:
-
-if edad >= 18:
-  print("Es mayor de edad")
-
-if edad >= 18:
-        print("Es mayor de edad")
-
-## 7. Comentarios en linea
-Los comentarios en la misma línea del código deben usarse solo cuando aportan valor real y no para explicar lo evidente. Para no ensuciar la lectura visual del código, PEP 8 exige separarlos del código fuente con al menos dos espacios en blanco, incluir un espacio después del símbolo "#" y comenzar el texto con mayúscula.
-
-### ANTES (Incorrecto)
-x = x + 1#incrementa x en 1
-p = 0.16#tasa del IVA
-
-### DESPUÉS (Correcto)
-x = x + 1  # Compensación por el índice base cero
-
-precio_total = subtotal * 1.16  # Aplica la tasa de impuesto estándar (16%)
-
-## 8. Nombres de Variables Globales
-Las variables globales de un módulo usan `snake_case`. Para evitar que variables internas se exporten al usar `from modulo import *`, se deben marcar como no públicas.
-
-### Antes (Incorrecto)
-Sin protección; exporta variables internas al exterior por accidente.
-```python
-CONFIG_INTERNA = "Dato sensible"  # Se exporta con import *
-
-### Despues (Correcto)
-__all__ = ['CONEXION_PUBLICA']  # Solo exporta lo necesario
-
-CONEXION_PUBLICA = "[https://api.com](https://api.com)"
-_config_interna = "Dato sensible"  # Protegido con '_'
 ---
 ## 9.- Importaciones
+
 Las importaciones en PEP 8 deben ir siempre al inicio del archivo (justo debajo del docstring del módulo y antes de variables globales), escribiendo una por línea y divididas en tres bloques de prioridad separados por una línea en blanco (librería estándar, librerías de terceros y módulos locales), priorizando importaciones absolutas y evitando el uso de asteriscos.
-## Antes (Incorrecto / No recomendado)
+
+### Antes (Incorrecto / No recomendado)
+
+```python
+
+import formulasalgebra # se hace una importacion de la biblioteca local y no se respeta prioridad
+import os, pandas  # se hacen dos importaciones a la vez
+from numpy import *  # hacemos la importacion usando un *, se recomienda hacer la importacion absoluta
+# no hay lineas en blanco que separen las importaciones
+```
+### Después (Correcto / Conforme a PEP 8)
 ```python
 # Se tiene una forma mas limpia y se respetan reglas y recomendaciones
 import os 
@@ -143,8 +96,10 @@ import numpy
 import formulas algebra 
 
 ```
+---
 ## 10.- Molestias (Pet peeves)
 Se establece la manera en que se deben de evitar espacios en blancos que son innecesarios que "ensucian" el codigo y algunas excepciones de espaciados.
+
 ### Antes (Incorrecto / No recomendado)
 ```python
 # Hay demasiados espacios que son innecesarios y solo ensucian el codigo
