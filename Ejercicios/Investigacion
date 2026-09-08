@@ -105,4 +105,28 @@ if edad >= 18:
 if edad >= 18:
         print("Es mayor de edad")
 
-        
+## 7. Comentarios en linea
+Los comentarios en la misma línea del código deben usarse solo cuando aportan valor real y no para explicar lo evidente. Para no ensuciar la lectura visual del código, PEP 8 exige separarlos del código fuente con al menos dos espacios en blanco, incluir un espacio después del símbolo "#" y comenzar el texto con mayúscula.
+
+### ANTES (Incorrecto)
+x = x + 1#incrementa x en 1
+p = 0.16#tasa del IVA
+
+### DESPUÉS (Correcto)
+x = x + 1  # Compensación por el índice base cero
+
+precio_total = subtotal * 1.16  # Aplica la tasa de impuesto estándar (16%)
+
+## 8. Nombres de Variables Globales
+Las variables globales de un módulo usan `snake_case`. Para evitar que variables internas se exporten al usar `from modulo import *`, se deben marcar como no públicas.
+
+### Antes (Incorrecto)
+Sin protección; exporta variables internas al exterior por accidente.
+```python
+CONFIG_INTERNA = "Dato sensible"  # Se exporta con import *
+
+### Despues (Correcto)
+__all__ = ['CONEXION_PUBLICA']  # Solo exporta lo necesario
+
+CONEXION_PUBLICA = "[https://api.com](https://api.com)"
+_config_interna = "Dato sensible"  # Protegido con '_'
