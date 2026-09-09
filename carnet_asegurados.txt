@@ -1,0 +1,11 @@
+--- Carnet Asegurado #1 ---
+Sexo: M
+Edad Real: 21 años
+Edad Ajustada: 18 años
+Fumador: No
+Extra-prima: No
+Suma Asegurada (SA): $550,000.00 MXN
+Prima Anual (MXN): $1,100.00 MXN
+Prima Anual (USD): $52.06 USD
+---------------------------------------------
+
