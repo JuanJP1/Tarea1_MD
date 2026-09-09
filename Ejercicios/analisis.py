@@ -1,3 +1,208 @@
+
+
+
+#Ejercicio 2 parte 1 
+
+# Creamos los errores personalizados
+class EdadInvalidaError(Exception):
+    pass
+
+
+class SexoInvalidoError(Exception):
+    pass
+
+
+class FumadorInvalidoError(Exception):
+    pass
+
+
+class ExtraPrimaInvalidaError(Exception):
+    pass
+
+
+class SumaAseguradaInvalidaError(Exception):
+    pass
+
+
+# Validamos la edad
+def solicitar_edad():
+    while True:
+        try:
+            edad = int(input("Ingrese la edad (18-99): "))
+
+            if edad < 18 or edad > 99:
+                raise EdadInvalidaError("Edad fuera de rango.")
+
+            return edad
+
+        except ValueError:
+            print("Error: ingresa un número entero.")
+        except EdadInvalidaError as e:
+            print(f"Error: {e}")
+
+
+# Validamos el sexo
+def solicitar_sexo():
+    while True:
+        try:
+            sexo = input("Ingrese el sexo (M/F): ").strip().upper()
+
+            if sexo not in ("M", "F"):
+                raise SexoInvalidoError("Solo se acepta M o F.")
+
+            return sexo
+
+        except SexoInvalidoError as e:
+            print(f"Error: {e}")
+
+
+# Validamos si fuma
+def solicitar_fumador():
+    while True:
+        try:
+            fumador = input("¿Es fumador? (Si/No): ").strip().lower()
+
+            if fumador not in ("si", "no"):
+                raise FumadorInvalidoError("Solo se acepta Si o No.")
+
+            return fumador
+
+        except FumadorInvalidoError as e:
+            print(f"Error: {e}")
+
+
+# Validamos la extra-prima
+def solicitar_extra_prima():
+    while True:
+        try:
+            extra_prima = input("¿Tiene extra-prima? (Si/No): ").strip().lower()
+
+            if extra_prima not in ("si", "no"):
+                raise ExtraPrimaInvalidaError("Solo se acepta Si o No.")
+
+            return extra_prima
+
+        except ExtraPrimaInvalidaError as e:
+            print(f"Error: {e}")
+
+
+# Validamos la suma asegurada
+def solicitar_suma_asegurada():
+    while True:
+        try:
+            entrada = input("Ingrese la suma asegurada: ")
+            entrada = entrada.replace(",", "").replace("$", "")
+
+            sa = float(entrada)
+
+            if sa < 500000 or sa > 3000000:
+                raise SumaAseguradaInvalidaError(
+                    "Debe estar entre $500,000 y $3,000,000."
+                )
+
+            return sa
+
+        except ValueError:
+            print("Error: ingresa un número.")
+        except SumaAseguradaInvalidaError as e:
+            print(f"Error: {e}")
+
+
+# Ajustamos la edad según las condiciones
+def ajustar_edad(edad, fumador, sexo, extra_prima):
+    edad_ajustada = edad
+
+    if fumador == "no":
+        edad_ajustada -= 5
+
+    if sexo == "F":
+        edad_ajustada -= 10
+
+    if extra_prima == "si":
+        edad_ajustada += 10
+
+    # Mantenemos la edad entre 18 y 99
+    edad_ajustada = max(18, min(99, edad_ajustada))
+
+    return edad_ajustada
+
+
+# Obtenemos el factor según edad y sexo
+def obtener_factor(edad, sexo):
+
+    if sexo == "F":
+        if 18 <= edad < 25:
+            return 1.5
+        elif 25 <= edad < 45:
+            return 1.7
+        elif 45 <= edad < 65:
+            return 2.0
+        else:
+            return 2.2
+
+    else:
+        if 18 <= edad < 25:
+            return 2.0
+        elif 25 <= edad < 45:
+            return 2.3
+        elif 45 <= edad < 65:
+            return 2.5
+        else:
+            return 3.0
+
+
+# Calculamos la prima
+def calcular_prima(sa, factor):
+    return (sa * factor) / 1000
+
+
+# Programa principal
+def main():
+
+    print("=" * 40)
+    print("      CALCULADORA DE SEGURO")
+    print("=" * 40)
+
+    # Pedimos todos los datos
+    edad = solicitar_edad()
+    sexo = solicitar_sexo()
+    fumador = solicitar_fumador()
+    extra_prima = solicitar_extra_prima()
+    sa = solicitar_suma_asegurada()
+
+    # Ajustamos la edad
+    edad_ajustada = ajustar_edad(
+        edad, fumador, sexo, extra_prima
+    )
+
+    # Buscamos el factor
+    factor = obtener_factor(edad_ajustada, sexo)
+
+    # Calculamos la prima
+    prima = calcular_prima(sa, factor)
+
+    # Mostramos los resultados
+    print("\n========== RESULTADOS ==========")
+    print(f"Edad original: {edad}")
+    print(f"Sexo: {sexo}")
+    print(f"Fumador: {'Sí' if fumador == 'si' else 'No'}")
+    print(f"Extra-prima: {'Sí' if extra_prima == 'si' else 'No'}")
+    print(f"Suma asegurada: ${sa:,.2f} MXN")
+    print(f"Edad ajustada: {edad_ajustada}")
+    print(f"Factor K: {factor}")
+    print(f"Prima anual: ${prima:,.2f} MXN")
+    print("================================")
+
+
+# Iniciamos el programa
+if __name__ == "__main__":
+    main()
+    
+    
+
+
+
+
 # Ejercicio 2 parte 3
 
 class Asegurado: # Una clase general para un asegurado cualquiera 
