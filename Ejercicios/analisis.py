@@ -1,4 +1,5 @@
 # Ejercicio 2 parte 3
+
 class Asegurado: # Una clase general para un asegurado cualquiera 
   def __init__(self, edad, suma_asegurada, fumador, extra_prima):
         self.edad = edad
@@ -44,3 +45,17 @@ class AseguradoMasculino(Asegurado): # Clase propia para hombres
         elif 25 < edad <= 45: return 2.3
         elif 45 < edad <= 65: return 2.5
         else: return 3.0
+
+# Ejercicio 2 parte 4
+
+class Conversor_de_moneda:
+    def __init__(self, tasa_cambio=21.13): # Con 21.13 por defecto
+        # Validar que la que el cambio sea valido
+        if tasa_cambio <= 0:
+            raise ValueError("La tasa de cambio debe ser un número mayor a cero.")
+        self.tasa_cambio = tasa_cambio
+        # si el valor es valido guardamos el dato 
+# Se guarda el valor de cambio si este fue valido 
+    def mxn_a_usd(self, monto_mxn): 
+        return monto_mxn / self.tasa_cambio 
+# Dado un monto en mxn se regresa la conversion para la tasa de cambio guardada
