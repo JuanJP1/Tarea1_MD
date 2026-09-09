@@ -240,7 +240,9 @@ class ImpresoraMultifuncional(Impresora, Escaner):
  **Problema de diseño que resuelve:** Este principio busca evitar que modulos de alto nivel, logica del negocio, queden afectados o dependan de modulos de bajo nivel (APIs, Bases de datos, interfaz, detalles de implementacion), mediante la implementacion o insertar de módulos abstractos entre estos, del cual ambos módulos puedan depender (interfaces o clases abstractas).
 
 ### Explicacion Conceptual
+
 El principio D busca evitar que modulos importantes o de logica del negocio se afecten por conceptos de bajo nivel, mediante modulos intermedios que eviten estas afectaciones sin embargo sigan dependiendo de este modulo intermedio, 
+
 ---
 
 ### Ejemplo en Python que viola el principio (Antes)
