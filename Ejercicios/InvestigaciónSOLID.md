@@ -232,3 +232,74 @@ class ImpresoraMultifuncional(Impresora, Escaner):
     pass
 ```
 ### Fuente consultada: Ferrer, B. (2024, 7 marzo). Principios SOLID: (4) Interface Segregation Principle - secture. Secture. https://secture.com/principios-solid-interface-segregation-principle/
+
+## 5. Dependency Inversion Principle / Principio de inversion de dependencias 
+
+### Nombre del principio y que problema busca resolver
+* **Nombre completo:** Principio de Inversion de Dependencias
+ **Problema de diseño que resuelve:** Este principio busca evitar que modulos de alto nivel, logica del negocio, queden afectados o dependan de modulos de bajo nivel (APIs, Bases de datos, interfaz, detalles de implementacion), mediante la implementacion o insertar de módulos abstractos entre estos, del cual ambos módulos puedan depender (interfaces o clases abstractas).
+
+### Explicacion Conceptual
+El principio D busca evitar que modulos importantes o de logica del negocio se afecten por conceptos de bajo nivel, mediante modulos intermedios que eviten estas afectaciones sin embargo sigan dependiendo de este modulo intermedio, 
+---
+
+### Ejemplo en Python que viola el principio (Antes)
+```python
+# Podemoss observar que una clase general que puede tener una logica mas amplia depende de una clase de bajo nivel
+class ventilador:
+    def encender(self):
+    print("El ventilador gira")
+
+  def apagar(self):
+    print("El ventilador deja de girar")
+
+class interruptor:
+
+  def __init__(self):
+    # concepto interruptor de alto nivel dependiendo del objeto de bajo nivel ventilador
+    self.ventilador = ventilador()
+
+  def accionar(self, encendido):
+    if encendido:
+      self.ventilador.encender()
+    else:
+      self.ventilador.apagar()
+      # En general un interruptor no deberia de depender de un ventilador
+```
+### Ejemplo aplicando el principio (Despues)
+```python
+from abc import ABC, abstractmethod
+# Tenemos la creacion de una abstracción, que servira para ambos modulos
+
+class DispositivoConectable(ABC):
+
+  @abstractmethod
+  def encender(self):
+    pass
+
+  @abstractmethod
+  def apagar(self):
+    pass
+
+class Ventilador(DispositivoConectable):
+
+  def accionar(self):
+    print("El ventilador gira ")
+
+  def apagar(self):
+    print("El ventilador dejo de girar")
+
+class Interruptor:
+
+  def __init__(self, dispositivo: DispositivoConectable):
+    # Recibe la abstracción por inyección de dependencias
+    self.dispositivo = dispositivo
+
+  def presionar(self, encendido):
+    if encendido:
+      self.dispositivo.encender()
+    else:
+      self.dispositivo.apagar()
+# Ahora se puede accionar un ventilador sin necesidad de mofificar o alterar un interruptor mediante una abstraccion
+```
+### Fuentes consultadas: Martin, R. C. (2002). Agile Software Development, Principles, Patterns, and Practices. Prentice Hall.Jenkov, J. (s. f.). The D in SOLID stands for the Dependency... [Publicación de LinkedIn]. LinkedIn. Recuperado el 8 de septiembre de 2026, de https://www.linkedin.com/posts/jakob-jenkov-4a3a8_the-d-in-solid-stands-for-the-dependency-activity-7339562759728037889-8wyU
