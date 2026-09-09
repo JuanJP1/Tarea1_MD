@@ -264,3 +264,45 @@ class Conversor_de_moneda:
     def mxn_a_usd(self, monto_mxn): 
         return monto_mxn / self.tasa_cambio 
 # Dado un monto en mxn se regresa la conversion para la tasa de cambio guardada
+
+#Ejercicios 2 parte 5
+def exportar_carnet(asegurados, conversor, ruta_archivo="carnet_asegurados.txt"):
+    """
+    Exporta el carnet de cada objeto 'Asegurado' a un archivo de texto.
+    Maneja excepciones de escritura mediante try/except.
+    """
+    try:
+        with open(ruta_archivo, "w") as archivo:
+            for a in asegurados:
+                prima_mxn = a.calcular_prima()
+
+                # Uso de try/except para manejar posibles errores en la conversión de moneda
+                try:
+                    prima_usd = conversor.mxn_a_usd(prima_mxn)
+                    prima_usd_str = f"${prima_usd} USD"
+                except Exception:
+                    prima_usd_str = "Error al convertir a USD"
+
+                es_fumador = "Sí" if a.fumador else "No"
+                tiene_extra_prima = "Sí" if a.extra_prima else "No"
+
+                print("--- Asegurado ---", file=archivo)
+                print(f"Edad Real: {a.edad} años", file=archivo)
+                print(f"Edad Ajustada: {a.calcular_edad_ajustada()} años", file=archivo)
+                print(f"Fumador: {es_fumador}", file=archivo)
+                print(f"Extra-prima: {tiene_extra_prima}", file=archivo)
+                print(f"Suma Asegurada (SA): ${a.suma_asegurada} MXN", file=archivo)
+                print(f"Prima Anual (MXN): ${prima_mxn} MXN", file=archivo)
+                print(f"Prima Anual (USD): {prima_usd_str}", file=archivo)
+                print("-" * 45 + "\n", file=archivo)
+
+        print(f"\nEl carnet se ha guardado en: '{ruta_archivo}'")
+
+    except PermissionError:
+        print(f"Error de permisos: No se puede escribir en la ruta '{ruta_archivo}'.")
+    except FileNotFoundError:
+        print(f"Error de ruta: La ubicación especificada no existe: '{ruta_archivo}'.")
+    except OSError as e:
+        print(f"Error de E/S del sistema al guardar el archivo: {e}")
+    except Exception as e:
+        print(f"Error inesperado al exportar los datos: {e}")
